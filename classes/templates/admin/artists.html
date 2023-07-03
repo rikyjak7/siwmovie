@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<link rel="stylesheet" href="/stile.css" />
+</head>
+
+<body>
+	<header th:replace="base.html::intestazione">header</header>
+	<h1>Artisti</h1>
+	<div th:if="${artists==null || artists.isEmpty()}">Non ci sono artisti nel sistema</div>
+	<ul>
+		<li th:each="artist : ${artists}">
+			<a th:href="@{'/artists' + '/' + ${artist.id}}" th:text="${artist.name} + ' ' + ${artist.surname}"></a>
+			<a th:href="@{'/admin/updateArtist' + '/' + ${artist.id}}" >Modifica</a>
+		</li>
+	</ul>
+</body>
+
+</html>

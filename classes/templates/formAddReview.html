@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Review</title>
+    <link rel="stylesheet" href="/stile.css?version=3" />
+  </head>
+  <body>
+    <header th:replace="base.html::intestazione">header</header>
+    <h1>Aggiungi un film</h1>
+    <form th:action="@{'/reviews/'+${movie.id}}" method="POST" th:object="${review}">
+      <div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+  		</div>
+      <div>
+       <h2> Titolo: <span ><input required type="text" th:field="${review.titolo}" autocomplete="off" /> </h2></span>
+      </div> 
+      <div>
+       <h2> Valutazione: 
+	   <span ><input required type="radio" value="1" name="val" th:field="${review.valutazione}"/></span>
+	   <span ><input required type="radio" value="2" name="val" th:field="${review.valutazione}"/></span>
+	   <span ><input required type="radio" value="3" name="val" th:field="${review.valutazione}"/></span>
+	   <span ><input required type="radio" value="4" name="val" th:field="${review.valutazione}"/></span>
+	   <span ><input required type="radio" value="5" name="val" th:field="${review.valutazione}"/></span>
+       </h2>
+      <div>
+       <h2>inserisci descrizione: <span><input required type="text" th:field="${review.testo}"/></h2></span> 
+      </div>
+
+      </div>
+      <div>
+        <span><button type="submit">Conferma</button></span>
+      </div>
+    </form>
+  </body>
+</html>

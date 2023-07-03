@@ -1,0 +1,16 @@
+<html>
+	<head>
+<link rel="stylesheet" href="/stile.css?version=3" />
+</head>
+<body>
+<header th:replace="base.html::intestazione">header</header>
+ <form th:action="@{/searchMovies}" method="post">
+ <div>
+       <h2> Anno: <span ><input required type="text" th:value="${year}" name="year"> </h2></span>
+      </div>
+ <div>
+	 <span><button type="submit">Conferma</button></span>
+ </div>
+ </form>
+</body>	
+</html>

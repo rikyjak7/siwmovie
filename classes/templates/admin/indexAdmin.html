@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		SiwMovie - Homepage
+	</title>
+	<link rel="stylesheet" href="/stile.css" />
+</head>
+
+<body>
+	<header th:replace="base.html::intestazione">header</header>
+	<div class="archivio">
+	<h1>Consulta l'archivio</h1>
+	<div>
+		<a href="/movies">Elenco Film</a>
+	</div>
+	</div>	
+	<div>
+		<a href="/artists">Elenco Artisti</a>
+	</div>
+	<h1>Operazioni per amministratore</h1>
+	<div>
+		<a href="/admin/indexMovie">Operazioni sui film</a>
+	</div>
+	<div>
+		<a href="/admin/indexArtist">Operazioni sugli artisti</a>
+	</div>
+</body>
+
+</html>

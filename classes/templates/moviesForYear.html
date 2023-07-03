@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Film</title>
+	<link rel="stylesheet" href="/stile.css?version=3" />
+  </head>
+  <body>
+	 
+    <header th:replace="base.html::intestazione">header</header>
+    <h1>Film</h1>
+    <div th:if="${movies.isEmpty()}">
+		<h2>Non ci sono film nel sistema relativi alla richiesta</h2>
+		</div>
+    <ul>
+      <div class="movie" th:each="movie : ${movies}">
+		  
+        <a th:href="@{'/movies' + '/' + ${movie.id}}"
+           th:text="${movie.title} + ' (' + ${movie.year} + ')'">
+           </a>
+           <br>
+      </div>
+    </ul>
+  </body>
+</html>

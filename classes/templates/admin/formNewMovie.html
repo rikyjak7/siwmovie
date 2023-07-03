@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Movie</title>
+    <link rel="stylesheet" href="/stile.css?version=3" />
+  </head>
+  <body>
+    <header th:replace="base.html::intestazione">header</header>
+    <h1>Aggiungi un film</h1>
+	<form enctype="multipart/form-data" th:action="@{/movies}" method="POST" th:object="${movie}">
+  		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+  		</div>
+		
+		<div>
+			<label>Titolo:</label> 
+			<span><input type="text" th:field="${movie.title}" /></span>
+		    <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
+		    </span>
+		</div>
+
+		<div>
+			<label>Anno:</label> <span><input type="text" th:field="${movie.year}" /></span>
+		    <span class="error" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">
+		    </span>
+		</div>
+
+		<div>
+			<label>URL immagine:</label> <span><input type="file" th:name="imageFile" accept="/image*"></span>
+		</div>
+		
+		<div>
+			<span><button type="submit">Conferma</button></span>
+		</div>
+	</form>
+  </body>
+</html>

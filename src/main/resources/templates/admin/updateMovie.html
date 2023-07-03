@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<title>Film</title>
+	<link rel="stylesheet" href="/stile.css?version=2" />
+</head>
+
+<body>
+	<header th:replace="base.html::intestazione">header</header>
+	<div th:if="${movie}">
+		<h1 th:text="${movie.title}">Titolo film</h1>
+		<div>
+			<h1> <span th:text="'Anno:(' + ${movie.year} + ')'">2000</span></h1>
+		</div>
+		<div th:if="${movie.director}">
+			<h1 th:text="'regista: ' + ${movie.director.name}">regista</h1>
+			<a th:href="@{'/admin/addDirector' + '/' + ${movie.id}}">modifica regista </a>
+
+		</div>
+		<div th:unless="${movie.director}">
+			<a th:href="@{'/admin/addDirector' + '/' + ${movie.id}}">aggiungi regista </a>
+		</div>
+		<div>
+			<a th:href="@{'/admin/addActor' + '/' + ${movie.id}}">gestisci attori</a>
+
+		</div>
+		<div th:unless="${movie.actors.isEmpty()}">
+			<h1>attori: </h1>
+			<ul>
+				<li th:each="actor : ${movie.actors}">
+					<h1 th:text="${actor.name} + '(' +${actor.dateOfBirth}+ ')'">
+			</ul>
+		</div>
+	</div>
+	<div th:unless="${movie}">Non esiste</div>
+
+</body>
+
+</html>

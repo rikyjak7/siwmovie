@@ -1,0 +1,96 @@
+body {
+	 background-color: rgb(29, 172, 197);
+	 margin: 0;
+	 text-align: center;
+ } /* sfondo giallo chiaro */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold; 
+  font-family: sans-serif; 
+  color: rgb(0, 0, 0); /* ruggine */
+}
+h1 { 
+  font-size: 30pt;
+ }
+ 
+h2 { 
+  font-size: l6pt;
+} 
+a { 
+  text-decoration: none;
+  font-size: 30pt;
+ }
+ 
+ a.logo {
+	 font-size: 30 pt;
+	 font-weight: bold;
+	 float: left;
+ }
+ a.logo img{
+	 height: 150px;
+	 width: 250px;
+ }
+
+p {
+  font-family: "Book Antiqua", serif; 
+  font-size: l2pt;
+}
+h1.title
+{
+	font-size:45pt;
+	float:left;
+	color: rgb(8, 89, 104); /* ruggine */
+}
+div.png{
+	background-color: transparent;
+}
+div.movie{
+	background-color: rgb(231, 231, 231);
+	text-align: center;
+	width: 25%;
+	
+	box-align: center;
+	margin: 12px auto;
+}
+header{
+	overflow: hidden;
+	background-color: rgb(255, 255, 255);
+	padding: 0;
+	margin:0;
+	border:0;
+}
+div.header{
+	float: right;
+}
+div.header a
+{
+	text-align: center;
+	font-size:45pt;
+	float:left;
+	padding: 50px 30px;
+}
+ul { 
+  font-family: "Book Antiqua", serif; 
+  font-size: 50pt;
+  list-style-type: square;
+}
+span.error{
+	color:red;
+	font-size: 18px; 
+	font-family: 'Signika', sans-serif; 
+}
+.button{
+	float: inline-end;
+	background-color: azure;
+}
+
+.review{
+	background-color: antiquewhite;
+	width: 16%;
+	align-items: center;
+	text-align: center;
+	margin-inline: auto;
+}
+.reviews{
+	text-align	: center;
+}
