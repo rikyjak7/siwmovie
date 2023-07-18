@@ -14,7 +14,7 @@
 		<div>
 			<ul>
 				<li th:each="artist : ${artists}">
-					<span th:text="${artist.name} + ' (' + ${artist.dateOfBirth} + ')'">Bishoy (2001)</span>
+					<span th:text="${artist.name} + ' ' +	 ${artist.surname} + ' (' + ${artist.dateOfBirth} + ')'">Bishoy (2001)</span>
 					<a th:href="@{'/admin/addActor' + '/' + ${movie.id}+'/' + ${artist.id}}"> AGGIUNGI</a>
 				</li>
 			</ul>
@@ -26,7 +26,7 @@
 		<div>
 			<ul>
 				<li th:each="artist : ${movie.actors}">
-					<span th:text="${artist.name} + ' (' + ${artist.dateOfBirth} + ')'">Bishoy (2001)</span>
+					<span th:text="${artist.name} +' ' +${artist.surname} + ' (' + ${artist.dateOfBirth} + ')'">Bishoy (2001)</span>
 					<a th:href="@{'/admin/removeActor/' + ${movie.id}+'/' + ${artist.id}}"> RIMUOVI</a>
 				</li>
 			</ul>

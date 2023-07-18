@@ -11,7 +11,7 @@
     <div th:if="${artists.isEmpty()}">Non ci sono artisti nel sistema</div>
     <ul>
       <li th:each="artist : ${artists}">
-        <a th:href="@{'/admin/setDirector' + '/' + ${movie.id}+'/' + ${artist.id}}" th:text="${artist.name} + ' (' + ${artist.dateOfBirth} + ')'">Bishoy (2001)</a>
+        <a th:href="@{'/admin/setDirector' + '/' + ${movie.id}+'/' + ${artist.id}}" th:text="${artist.name} + ' ' + ${artist.surname} + ' (' + ${artist.dateOfBirth} + ')'">Bishoy (2001)</a>
       </li>
     </ul>
   </body>

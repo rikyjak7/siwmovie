@@ -85,17 +85,18 @@ public class MovieService {
 	}
 	@Transactional
 	public Movie updateMovie(Movie movie, BindingResult bindingResult, MultipartFile image, Long id) throws IOException {
+		movieValidator.validate(movie, bindingResult);
 		Movie oldMovie=this.movieRepository.findById(id).get();
-		this.movieRepository.delete(oldMovie);
-		this.movieValidator.validate(movie, bindingResult);
-		if (!bindingResult.hasErrors()) {
+		if (!bindingResult.hasFieldErrors()) {
+			oldMovie.setTitle(movie.getTitle());
+			oldMovie.setYear(movie.getYear());
 			try {
 				String base64Image = Base64.getEncoder().encodeToString(image.getBytes());
-				movie.setImage(base64Image);
+				oldMovie.setImage(base64Image);
 			} catch (IOException e) {
 			}
-			this.movieRepository.save(movie);
-			return movie;
+			this.movieRepository.save(oldMovie);
+			return oldMovie;
 		} else {
 			this.movieRepository.save(oldMovie);
 			throw new IOException();

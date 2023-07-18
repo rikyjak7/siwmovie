@@ -65,19 +65,22 @@ public class ArtistService {
 
     public Object updateArtist(@Valid Artist artist, BindingResult bindingResult, MultipartFile image, Long id) throws IOException {
         Artist oldArtist = this.artistRepository.findById(id).get();
-		this.artistRepository.delete(this.artistRepository.findById(id).get()); 
 		this.artistValidator.validate(artist, bindingResult);
-	    if (!bindingResult.hasErrors()) 
+	    if (!bindingResult.hasFieldErrors()) 
 	    {
+		  oldArtist.setDateOfBirth(artist.getDateOfBirth());
+		  oldArtist.setDeathDate(artist.getDeathDate());
+		  oldArtist.setName(artist.getName());
+		  oldArtist.setSurname(artist.getSurname());
 	      try {
 	    	String base64Image=  Base64.getEncoder().encodeToString(image.getBytes());
-			artist.setImage(base64Image);
+			oldArtist.setImage(base64Image);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	      this.artistRepository.save(artist);
-	      return artist;
+	      this.artistRepository.save(oldArtist);
+	      return oldArtist;
 	    }
 	    else {	
 			this.artistRepository.save(oldArtist);

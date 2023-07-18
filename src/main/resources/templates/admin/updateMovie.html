@@ -15,7 +15,7 @@
 			<h1> <span th:text="'Anno:(' + ${movie.year} + ')'">2000</span></h1>
 		</div>
 		<div th:if="${movie.director}">
-			<h1 th:text="'regista: ' + ${movie.director.name}">regista</h1>
+			<h1 th:text="'regista: ' + ${movie.director.name} + ' ' + ${movie.director.surname}"></h1>
 			<a th:href="@{'/admin/addDirector' + '/' + ${movie.id}}">modifica regista </a>
 
 		</div>

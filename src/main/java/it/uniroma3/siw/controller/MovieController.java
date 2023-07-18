@@ -129,7 +129,7 @@ public class MovieController {
 			@PathVariable("idArtist") Long idActor) {
 		this.movieService.removeActor(idMovie, idActor);
 		model.addAttribute("movie", movieService.find(idMovie));
-		model.addAttribute("artists", artistService.findAll());
+		model.addAttribute("artists", artistService.findNotActors(idMovie));
 		return ("admin/addActor.html");
 	}
 
@@ -138,7 +138,7 @@ public class MovieController {
 		Movie movie = movieService.find(idMovie);
 		this.movieService.addActor(movie, idActor);
 		model.addAttribute("movie", movie);
-		model.addAttribute("artists", artistService.findAll());
+		model.addAttribute("artists", artistService.findNotActors(idMovie));
 		return "admin/addActor.html";
 	}
 

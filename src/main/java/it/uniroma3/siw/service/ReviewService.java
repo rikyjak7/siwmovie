@@ -44,12 +44,10 @@ public class ReviewService {
 		return this.reviewRepository.findById(id).get().getUser();
 	}
 
-	public Review newReview(Review review, Long idMovie, BindingResult bindingResult) throws IOException{
+	public Review newReview(Review review, Long idMovie, BindingResult bindingResult) throws IOException {
 		Review newReview = new Review(review.getTitolo(), review.getValutazione(), review.getTesto());
 		Movie movie = this.movieRepository.findById(idMovie).get();
 		newReview.setMovie(movie);
-		this.reviewRepository.save(newReview);
-		movie.getReviews().add(newReview);
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsRepository.findByUsername(userDetails.getUsername()).get();
 		User user = credentials.getUser();
@@ -57,10 +55,11 @@ public class ReviewService {
 		this.reviewValidator.validate(newReview, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			this.movieRepository.save(movie);
+			this.reviewRepository.save(newReview);
+			movie.getReviews().add(newReview);
 			return newReview;
-		}
-		else{
-			throw  new IOException();
+		} else {
+			throw new IOException();
 		}
 	}
 }

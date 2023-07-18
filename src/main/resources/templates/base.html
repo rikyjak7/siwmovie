@@ -1,14 +1,20 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <body>
 	<header th:fragment="intestazione">
 		<a href="/" class="logo">
-			<img height="10%" width="10%" src="/images/logo-siw.png" >
+			<img height="10%" width="10%" src="/images/logo-siw.png">
 			<h1 class="title">Siw Movie</h1>
-			</a>
-		<div class="header">
-		<a th:href="@{/login}">Login</a>
-		<a th:href="@{/logout}">Logout</a>
+		</a>
+		<div class="loginText">
+			<div th:if="${userDetails}" >
+				<span th:text="${userDetails.username}">username</span>
+				<a th:href="@{/logout}">Logout</a>
+			</div>
+			<div th:unless="${userDetails}">
+				<a th:href="@{/login}">Login</a>
+			</div>
 		</div>
 	</header>
 </body>
