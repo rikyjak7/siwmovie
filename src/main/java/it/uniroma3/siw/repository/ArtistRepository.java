@@ -12,5 +12,4 @@ public interface ArtistRepository extends CrudRepository<Artist,Long>{
 public boolean existsByNameAndDateOfBirth(String name, LocalDate year);
 public boolean existsByNameAndSurname(String name, String surname);
 public List<Artist> getArtistByMoviesActNotContains(Movie movie);
-void delete(Artist artist);
 }

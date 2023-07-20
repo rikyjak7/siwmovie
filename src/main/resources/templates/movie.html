@@ -32,6 +32,7 @@
         <div th:unless="${movie}">Non esiste</div>
     </div>
     <div class="reviews">
+        <h1>Recensioni: </h1>
         <ul>
             <div class="review" th:each="review : ${reviews}">
                 <a th:href="@{'/reviews/' + ${review.id}}"

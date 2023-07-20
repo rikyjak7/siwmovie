@@ -10,12 +10,11 @@
 <body>
 	<header th:replace="base.html::intestazione">header</header>
 	<div th:if="${movie}">
-		<h1 th:text="${movie.title}">Titolo film</h1>
+		<h1 th:text="${movie.title} + '(' + ${movie.year} + ')'">Titolo film</h1>
 		<div>
-			<h1> <span th:text="'Anno:(' + ${movie.year} + ')'">2000</span></h1>
 		</div>
 		<div th:if="${movie.director}">
-			<h1 th:text="'regista: ' + ${movie.director.name} + ' ' + ${movie.director.surname}"></h1>
+			<h2 th:text="'regista: ' + ${movie.director.name} + ' ' + ${movie.director.surname}"></h2>
 			<a th:href="@{'/admin/addDirector' + '/' + ${movie.id}}">modifica regista </a>
 
 		</div>
@@ -30,7 +29,7 @@
 			<h1>attori: </h1>
 			<ul>
 				<li th:each="actor : ${movie.actors}">
-					<h1 th:text="${actor.name} + '(' +${actor.dateOfBirth}+ ')'">
+					<h1 th:text="${actor.name} +' ' + ${actor.surname} + '(' +${actor.dateOfBirth}+ ')'">
 			</ul>
 		</div>
 	</div>

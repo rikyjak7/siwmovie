@@ -14,6 +14,7 @@ import it.uniroma3.siw.model.Movie;
 import it.uniroma3.siw.repository.ArtistRepository;
 import it.uniroma3.siw.repository.MovieRepository;
 import it.uniroma3.siw.validator.ArtistValidator;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @Service
@@ -22,28 +23,34 @@ public class ArtistService {
 @Autowired ArtistRepository artistRepository;
 @Autowired MovieRepository movieRepository;
 @Autowired ArtistValidator artistValidator;
-
+	
+	@Transactional
 	public Object getArtist(Long id) {
 		return this.artistRepository.findById(id).get();
 	}
 
+	@Transactional
 	public boolean exists(Artist artist) {
 	 return	this.artistRepository.existsByNameAndDateOfBirth(artist.getName(), artist.getDateOfBirth());
 	}
 
+	@Transactional
 	public void save(Artist artist) {
 		this.artistRepository.save(artist);
 	}
 
+	@Transactional
 	public List<Artist> findAll() {
 		return (List<Artist>) this.artistRepository.findAll();
 	}
 
+	@Transactional
 	public Object findNotActors(Long id) {
 		Movie movie= this.movieRepository.findById(id).get();
 		return this.artistRepository.getArtistByMoviesActNotContains(movie);
 	}
 
+	@Transactional
 	public Object newArtist(@Valid Artist artist, BindingResult bindingResult, MultipartFile image) throws IOException {
 		this.artistValidator.validate(artist, bindingResult);
 	    if (!bindingResult.hasErrors()) 
@@ -63,6 +70,7 @@ public class ArtistService {
 	    }
 	}
 
+	@Transactional
     public Object updateArtist(@Valid Artist artist, BindingResult bindingResult, MultipartFile image, Long id) throws IOException {
         Artist oldArtist = this.artistRepository.findById(id).get();
 		this.artistValidator.validate(artist, bindingResult);

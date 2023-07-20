@@ -19,6 +19,7 @@ import it.uniroma3.siw.repository.CredentialsRepository;
 import it.uniroma3.siw.repository.MovieRepository;
 import it.uniroma3.siw.repository.ReviewRepository;
 import it.uniroma3.siw.validator.ReviewValidator;
+import jakarta.transaction.Transactional;
 
 @Service
 public class ReviewService {
@@ -32,18 +33,19 @@ public class ReviewService {
 	@Autowired
 	ReviewValidator reviewValidator;
 
+	@Transactional
 	public void save(Review newReview) {
 		this.reviewRepository.save(newReview);
 	}
-
+	@Transactional
 	public Review find(Long id) {
 		return this.reviewRepository.findById(id).get();
 	}
-
+	@Transactional
 	public User getUser(Long id) {
 		return this.reviewRepository.findById(id).get().getUser();
 	}
-
+	@Transactional
 	public Review newReview(Review review, Long idMovie, BindingResult bindingResult) throws IOException {
 		Review newReview = new Review(review.getTitolo(), review.getValutazione(), review.getTesto());
 		Movie movie = this.movieRepository.findById(idMovie).get();
